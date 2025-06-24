@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI卖货对赌计划 - 0基础费·90天销量翻倍</title>
+    <meta name="description" content="AI卖货对赌计划，0基础费，90天销量翻倍，不翻倍退运营费，技术团队全程托管">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 对赌流程图 */
+        .process-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .step-description {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .process-arrow {
+            font-size: 2rem;
+            color: #667eea;
+            margin: 0 10px;
+        }
+
+        .decision-point {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .outcome-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .outcome-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .outcome-yes {
+            border: 3px solid #27ae60;
+        }
+
+        .outcome-no {
+            border: 3px solid #e74c3c;
+        }
+
+        .outcome-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .outcome-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 服务时间轴 */
+        .timeline-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .timeline-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .timeline-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .timeline-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+
+        .timeline-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .timeline-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .stage-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .deliverable {
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        /* AI效果模拟器 */
+        .simulator-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .simulator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .simulator-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-label {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .budget-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .budget-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #feca57;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .budget-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #feca57;
+        }
+
+        .prediction-results {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .result-label {
+            font-size: 1.1rem;
+        }
+
+        .result-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+        }
+
+        /* 服务对比表 */
+        .comparison-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .feature-name {
+            text-align: left;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .basic-plan {
+            color: #666;
+        }
+
+        .premium-plan {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .check-mark {
+            color: #27ae60;
+            font-size: 1.5rem;
+        }
+
+        .x-mark {
+            color: #e74c3c;
+            font-size: 1.5rem;
+        }
+
+        .premium-highlight {
+            background: linear-gradient(45deg, #ff6b6b, #feca57) !important;
+            color: white !important;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: white;
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .process-arrow {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+            
+            .outcome-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-table, .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .timeline-table th, .timeline-table td,
+            .comparison-table th, .comparison-table td {
+                padding: 10px;
+            }
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">76AI卖货</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="training.html">AI卖货突击营</a></li>
+                <li><a href="betting.html" class="active">AI卖货对赌计划</a></li>
+                <li><a href="cases.html">案例战报</a></li>
+                <li><a href="tools.html">免费AI工具</a></li>
+                <li><a href="story.html">创始人故事</a></li>
+                <li><a href="legal.html">法律保障</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">AI卖货对赌计划</h1>
+            <p class="hero-subtitle">0基础费·90天销量翻倍</p>
+            <div class="guarantee-badge">🔥 不翻倍退运营费 + 赔偿</div>
+        </div>
+    </section>
+
+    <!-- 对赌协议流程图 -->
+    <section class="process-section">
+        <div class="section-container">
+            <h2 class="section-title">对赌协议流程</h2>
+            <div class="process-flow fade-in">
+                <div class="process-step">
+                    <div class="step-icon">📝</div>
+                    <div class="step-title">签约0付款</div>
+                    <div class="step-description">签署对赌协议<br>无需预付任何费用</div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">🚀</div>
+                    <div class="step-title">部署AI系统</div>
+                    <div class="step-description">专业团队搭建<br>自动化营销系统</div>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-icon">⏰</div>
+                    <div class="step-title">90天运营</div>
+                    <div class="step-description">全程托管运营<br>数据实时监控</div>
+                </div>
+            </div>
+
+            <div class="decision-point fade-in">
+                90天后销量是否翻倍？
+            </div>
+
+            <div class="outcome-options fade-in">
+                <div class="outcome-card outcome-yes">
+                    <div class="outcome-icon">✅</div>
+                    <div class="outcome-title" style="color: #27ae60;">销量翻倍成功</div>
+                    <div class="step-description">按约定分成比例<br>支付服务费用</div>
+                </div>
+                <div class="outcome-card outcome-no">
+                    <div class="outcome-icon">❌</div>
+                    <div class="outcome-title" style="color: #e74c3c;">未达成目标</div>
+                    <div class="step-description">全额退还运营费<br>额外赔偿损失</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务时间轴 -->
+    <section class="timeline-section">
+        <div class="section-container">
+            <h2 class="section-title">服务时间轴</h2>
+            <table class="timeline-table fade-in">
+                <thead>
+                    <tr>
+                        <th>阶段</th>
+                        <th>关键动作</th>
+                        <th>交付成果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="stage-badge">第1周</span></td>
+                        <td>AI诊断+系统部署</td>
+                        <td><span class="deliverable">实时数据驾驶舱</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="stage-badge">第2-4周</span></td>
+                        <td>精准引流爆破</td>
+                        <td><span class="deliverable">日均50+精准客资</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="stage-badge">第5-8周</span></td>
+                        <td>成交转化优化</td>
+                        <td><span class="deliverable">客户转化率提升</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="stage-badge">第9-12周</span></td>
+                        <td>复购系统搭建</td>
+                        <td><span class="deliverable">老客贡献占比35%+</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- AI效果模拟器 -->
+    <section class="simulator-section">
+        <div class="section-container">
+            <div class="simulator-container fade-in">
+                <h2 class="simulator-title">AI效果模拟器</h2>
+                <div class="input-group">
+                    <label class="input-label">您的月广告预算：</label>
+                    <input type="range" class="budget-slider" id="budgetSlider" min="300" max="5000" value="500" step="100">
+                    <div class="budget-display">¥<span id="budgetValue">500</span></div>
+                </div>
+                
+                <div class="prediction-results">
+                    <div class="result-item">
+                        <span class="result-label">预估获得客户：</span>
+                        <span class="result-value" id="customerCount">62人</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">预计成交额：</span>
+                        <span class="result-value" id="salesAmount">¥18,400</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">投资回报率：</span>
+                        <span class="result-value" id="roiValue">3680%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务版本对比 -->
+    <section class="comparison-section">
+        <div class="section-container">
+            <h2 class="section-title">服务版本对比</h2>
+            <table class="comparison-table fade-in">
+                <thead>
+                    <tr>
+                        <th>功能</th>
+                        <th>基础版</th>
+                        <th class="premium-highlight">旗舰版（对赌）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="feature-name">服务周期</td>
+                        <td class="basic-plan">30天</td>
+                        <td class="premium-plan">90天</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">效果保障</td>
+                        <td class="basic-plan"><span class="x-mark">×</span></td>
+                        <td class="premium-plan"><span class="check-mark">✅</span> 销量翻倍或退款</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">专属技术团队</td>
+                        <td class="basic-plan">1人</td>
+                        <td class="premium-plan">3人小组</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">数据大屏共享</td>
+                        <td class="basic-plan"><span class="x-mark">×</span></td>
+                        <td class="premium-plan"><span class="check-mark">✅</span> 实时查看</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">分成模式</td>
+                        <td class="basic-plan"><span class="x-mark">×</span></td>
+                        <td class="premium-plan"><span class="check-mark">✅</span> 销售额5-15%</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">风险承担</td>
+                        <td class="basic-plan">客户自担</td>
+                        <td class="premium-plan"><span class="check-mark">✅</span> 平台承担</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2 class="cta-title">立即申请0基础费名额</h2>
+            <p class="cta-subtitle">每月仅限20个名额，先到先得</p>
+            <a href="#" class="cta-button" onclick="handleApplication()">立即申请免费用系统 →</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-links">
+                <a href="index.html">返回首页</a>
+                <a href="training.html">突击营课程</a>
+                <a href="cases.html">案例战报</a>
+                <a href="legal.html">法律保障</a>
+            </div>
+            <div class="contact-phone">咨询热线：18948319467</div>
+            <div>专业团队7×24小时为您服务</div>
+        </div>
+    </footer>
+
+    <script>
+        // AI效果模拟器
+        const budgetSlider = document.getElementById('budgetSlider');
+        const budgetValue = document.getElementById('budgetValue');
+        const customerCount = document.getElementById('customerCount');
+        const salesAmount = document.getElementById('salesAmount');
+        const roiValue = document.getElementById('roiValue');
+
+        function updatePrediction() {
+            const budget = parseInt(budgetSlider.value);
+            budgetValue.textContent = budget;
+            
+            // 模拟计算（实际应该基于真实数据模型）
+            const customers = Math.floor(budget * 0.12 + Math.random() * 10);
+            const avgOrderValue = 300;
+            const conversionRate = 0.25;
+            const sales = Math.floor(customers * avgOrderValue * conversionRate);
+            const roi = Math.floor((sales / budget) * 100);
+            
+            customerCount.textContent = customers + '人';
+            salesAmount.textContent = '¥' + sales.toLocaleString();
+            roiValue.textContent = roi + '%';
+        }
+
+        budgetSlider.addEventListener('input', updatePrediction);
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 申请处理
+        function handleApplication() {
+            if (confirm('确认申请0基础费名额？我们将安排专业顾问为您制定专属方案。')) {
+                alert('申请已提交！专业顾问将在2小时内联系您进行需求沟通。');
+            }
+        }
+
+        // 页面加载完成后启动
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+            updatePrediction(); // 初始化模拟器
+        });
+
+        // 动态数据更新（模拟实时效果）
+        setInterval(() => {
+            const randomVariation = Math.random() * 0.1 - 0.05; // ±5%变化
+            const currentBudget = parseInt(budgetSlider.value);
+            const baseCustomers = Math.floor(currentBudget * 0.12);
+            const variatedCustomers = Math.floor(baseCustomers * (1 + randomVariation));
+            
+            if (Math.abs(variatedCustomers - baseCustomers) > 2) {
+                customerCount.textContent = variatedCustomers + '人';
+                
+                const avgOrderValue = 300;
+                const conversionRate = 0.25;
+                const newSales = Math.floor(variatedCustomers * avgOrderValue * conversionRate);
+                salesAmount.textContent = '¥' + newSales.toLocaleString();
+                
+                const newRoi = Math.floor((newSales / currentBudget) * 100);
+                roiValue.textContent = newRoi + '%';
+            }
+        }, 3000);
+    </script>
+</body>
+</html> 

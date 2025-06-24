@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法律保障 - 合同条款与权益保护</title>
+    <meta name="description" content="完善的法律保障体系，合同条款透明，权益保护全面">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            font-weight: bold;
+        }
+
+        /* 保障体系 */
+        .guarantee-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .guarantee-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guarantee-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .guarantee-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .guarantee-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* 合同条款 */
+        .contract-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contract-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contract-tab {
+            padding: 15px 30px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .contract-tab.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .contract-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px;
+            display: none;
+        }
+
+        .contract-content.active {
+            display: block;
+        }
+
+        .contract-article {
+            margin-bottom: 30px;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .article-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .article-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-text {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* 资质证书 */
+        .credentials-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .credential-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .credential-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .credential-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .credential-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* 投诉处理 */
+        .complaint-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .complaint-process {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .step-description {
+            color: #666;
+        }
+
+        /* 联系方式 */
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .trust-badges {
+                gap: 20px;
+            }
+            
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contract-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contract-content {
+                padding: 20px;
+            }
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">76AI卖货</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="training.html">AI卖货突击营</a></li>
+                <li><a href="betting.html">AI卖货对赌计划</a></li>
+                <li><a href="cases.html">案例战报</a></li>
+                <li><a href="tools.html">免费AI工具</a></li>
+                <li><a href="story.html">创始人故事</a></li>
+                <li><a href="legal.html" class="active">法律保障</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">法律保障</h1>
+            <p class="hero-subtitle">完善的法律保障体系，让您的权益得到全面保护</p>
+            <div class="trust-badges">
+                <div class="trust-badge">🏛️ 正规注册企业</div>
+                <div class="trust-badge">📋 标准化合同</div>
+                <div class="trust-badge">⚖️ 第三方监管</div>
+                <div class="trust-badge">🛡️ 保险保障</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 保障体系 -->
+    <section class="guarantee-section">
+        <div class="section-container">
+            <h2 class="section-title">六重保障体系</h2>
+            <div class="guarantee-grid">
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">📄</div>
+                    <div class="guarantee-title">合同保障</div>
+                    <div class="guarantee-description">
+                        严格按照《中华人民共和国合同法》签署正式合同，条款清晰明确，双方权责分明。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 合同条款经专业律师审核<br>
+                        • 明确服务内容和效果标准<br>
+                        • 详细的违约责任条款
+                    </div>
+                </div>
+
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">💰</div>
+                    <div class="guarantee-title">资金保障</div>
+                    <div class="guarantee-description">
+                        采用第三方资金托管，确保您的资金安全。未达效果，全额退款。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 银行第三方资金托管<br>
+                        • 阶段性付款降低风险<br>
+                        • 不满意7天内无条件退款
+                    </div>
+                </div>
+
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">🎯</div>
+                    <div class="guarantee-title">效果保障</div>
+                    <div class="guarantee-description">
+                        承诺具体的效果指标，达不到目标立即启动赔偿机制。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 销量翻倍或退还服务费<br>
+                        • 数据透明，实时监控<br>
+                        • 第三方数据验证
+                    </div>
+                </div>
+
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">🔒</div>
+                    <div class="guarantee-title">隐私保障</div>
+                    <div class="guarantee-description">
+                        严格保护客户商业机密和个人隐私，签署保密协议。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 员工签署保密协议<br>
+                        • 数据加密存储传输<br>
+                        • 定期安全审计
+                    </div>
+                </div>
+
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">⚡</div>
+                    <div class="guarantee-title">服务保障</div>
+                    <div class="guarantee-description">
+                        7×24小时客服支持，专业团队全程跟进，确保服务质量。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 专属客服经理<br>
+                        • 2小时内响应问题<br>
+                        • 定期服务质量回访
+                    </div>
+                </div>
+
+                <div class="guarantee-card fade-in">
+                    <div class="guarantee-icon">🏥</div>
+                    <div class="guarantee-title">保险保障</div>
+                    <div class="guarantee-description">
+                        购买专业责任保险，为客户损失提供额外保障。
+                    </div>
+                    <div class="guarantee-details">
+                        <strong>具体保障：</strong><br>
+                        • 500万专业责任险<br>
+                        • 覆盖服务过程风险<br>
+                        • 快速理赔流程
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合同条款 -->
+    <section class="contract-section">
+        <div class="section-container">
+            <h2 class="section-title">合同条款详情</h2>
+            <div class="contract-tabs">
+                <button class="contract-tab active" onclick="showContract('service')">服务条款</button>
+                <button class="contract-tab" onclick="showContract('payment')">付款条款</button>
+                <button class="contract-tab" onclick="showContract('guarantee')">保障条款</button>
+                <button class="contract-tab" onclick="showContract('privacy')">隐私条款</button>
+            </div>
+
+            <div id="service-contract" class="contract-content active fade-in">
+                <div class="contract-article">
+                    <div class="article-title">第一条 服务内容</div>
+                    <div class="article-content">
+                        <p>甲方（76AI卖货）向乙方（客户）提供以下服务：</p>
+                        <ul>
+                            <li>AI营销系统搭建与部署</li>
+                            <li>客户画像分析与精准引流</li>
+                            <li>营销文案与素材制作</li>
+                            <li>数据分析与优化建议</li>
+                            <li>90天全程技术支持</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第二条 服务标准</div>
+                    <div class="article-content">
+                        <p>甲方承诺在服务期内实现以下标准：</p>
+                        <ul>
+                            <li><span class="highlight-text">销量翻倍</span>：相比服务前90天平均销量提升100%以上</li>
+                            <li><span class="highlight-text">客户获取</span>：每月新增精准客户不少于50个</li>
+                            <li><span class="highlight-text">转化率</span>：整体转化率提升至行业平均水平以上</li>
+                            <li><span class="highlight-text">响应时间</span>：技术问题2小时内响应，24小时内解决</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第三条 双方责任</div>
+                    <div class="article-content">
+                        <p><strong>甲方责任：</strong></p>
+                        <ul>
+                            <li>按时交付约定的服务内容</li>
+                            <li>保证系统稳定运行</li>
+                            <li>提供专业技术支持</li>
+                            <li>保护客户商业机密</li>
+                        </ul>
+                        <p><strong>乙方责任：</strong></p>
+                        <ul>
+                            <li>提供真实准确的产品信息</li>
+                            <li>配合系统部署和调试</li>
+                            <li>按约定支付服务费用</li>
+                            <li>合理使用系统功能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="payment-contract" class="contract-content fade-in">
+                <div class="contract-article">
+                    <div class="article-title">第一条 付款方式</div>
+                    <div class="article-content">
+                        <p>本服务采用<span class="highlight-text">效果付费</span>模式，具体如下：</p>
+                        <ul>
+                            <li><strong>0基础费：</strong>签约时无需支付任何费用</li>
+                            <li><strong>分成模式：</strong>按实际销售额的5%-15%分成</li>
+                            <li><strong>保底收费：</strong>最低月服务费不超过3000元</li>
+                            <li><strong>封顶收费：</strong>单月分成不超过销售额的15%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第二条 结算周期</div>
+                    <div class="article-content">
+                        <ul>
+                            <li>每月最后一个工作日进行数据核算</li>
+                            <li>核算完成后7个工作日内开具发票</li>
+                            <li>乙方收到发票后15个工作日内付款</li>
+                            <li>支持银行转账、支付宝、微信等多种付款方式</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第三条 费用争议处理</div>
+                    <div class="article-content">
+                        <p>如对费用计算存在争议，按以下流程处理：</p>
+                        <ul>
+                            <li>双方协商解决，协商期限不超过7个工作日</li>
+                            <li>协商不成，委托第三方审计机构核算</li>
+                            <li>审计费用由败诉方承担</li>
+                            <li>争议期间不影响正常服务提供</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="guarantee-contract" class="contract-content fade-in">
+                <div class="contract-article">
+                    <div class="article-title">第一条 效果保障</div>
+                    <div class="article-content">
+                        <p>甲方对服务效果作出以下<span class="highlight-text">明确承诺</span>：</p>
+                        <ul>
+                            <li><strong>销量保障：</strong>90天内销量未翻倍，退还已付服务费</li>
+                            <li><strong>客户保障：</strong>月新增客户不足承诺数量，按比例退费</li>
+                            <li><strong>系统保障：</strong>系统故障导致损失，甲方承担相应责任</li>
+                            <li><strong>数据保障：</strong>提供第三方数据验证报告</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第二条 赔偿机制</div>
+                    <div class="article-content">
+                        <p>未达承诺效果的赔偿标准：</p>
+                        <ul>
+                            <li>销量增长不足50%：退还50%服务费</li>
+                            <li>销量增长50%-100%：退还30%服务费</li>
+                            <li>销量下降：退还全部服务费+赔偿损失</li>
+                            <li>系统故障损失：按实际损失1:1赔偿</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第三条 免责条款</div>
+                    <div class="article-content">
+                        <p>以下情况甲方不承担责任：</p>
+                        <ul>
+                            <li>不可抗力因素（自然灾害、政策变化等）</li>
+                            <li>乙方提供虚假信息导致的后果</li>
+                            <li>乙方不配合或违规操作</li>
+                            <li>第三方平台政策变化影响</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="privacy-contract" class="contract-content fade-in">
+                <div class="contract-article">
+                    <div class="article-title">第一条 信息保护</div>
+                    <div class="article-content">
+                        <p>甲方承诺对乙方信息进行严格保护：</p>
+                        <ul>
+                            <li><strong>商业机密：</strong>产品信息、客户数据、经营策略等</li>
+                            <li><strong>个人隐私：</strong>联系方式、身份信息等个人数据</li>
+                            <li><strong>技术秘密：</strong>系统配置、算法参数等技术信息</li>
+                            <li><strong>财务信息：</strong>销售数据、收入情况等财务数据</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第二条 使用限制</div>
+                    <div class="article-content">
+                        <p>甲方承诺仅在以下范围内使用客户信息：</p>
+                        <ul>
+                            <li>提供约定的AI营销服务</li>
+                            <li>系统优化和效果分析</li>
+                            <li>客服支持和问题解决</li>
+                            <li>法律法规要求的配合调查</li>
+                        </ul>
+                        <p><span class="highlight-text">严禁</span>将客户信息用于其他商业用途或向第三方泄露。</p>
+                    </div>
+                </div>
+
+                <div class="contract-article">
+                    <div class="article-title">第三条 数据安全</div>
+                    <div class="article-content">
+                        <p>甲方采取以下措施保障数据安全：</p>
+                        <ul>
+                            <li>采用银行级加密技术存储数据</li>
+                            <li>建立完善的访问权限管理体系</li>
+                            <li>定期进行安全审计和漏洞修复</li>
+                            <li>员工签署保密协议并接受培训</li>
+                            <li>数据备份和灾难恢复机制</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资质证书 -->
+    <section class="credentials-section">
+        <div class="section-container">
+            <h2 class="section-title">资质证书</h2>
+            <div class="credentials-grid">
+                <div class="credential-card fade-in">
+                    <div class="credential-image">营业执照</div>
+                    <div class="credential-title">企业法人营业执照</div>
+                    <div class="credential-description">统一社会信用代码：91110000MA01234567</div>
+                </div>
+                <div class="credential-card fade-in">
+                    <div class="credential-image">税务登记证</div>
+                    <div class="credential-title">税务登记证</div>
+                    <div class="credential-description">依法纳税，诚信经营</div>
+                </div>
+                <div class="credential-card fade-in">
+                    <div class="credential-image">软件著作权</div>
+                    <div class="credential-title">AI营销系统软著</div>
+                    <div class="credential-description">自主研发，知识产权保护</div>
+                </div>
+                <div class="credential-card fade-in">
+                    <div class="credential-image">ISO认证</div>
+                    <div class="credential-title">ISO9001质量认证</div>
+                    <div class="credential-description">国际标准质量管理体系</div>
+                </div>
+                <div class="credential-card fade-in">
+                    <div class="credential-image">高新技术</div>
+                    <div class="credential-title">高新技术企业</div>
+                    <div class="credential-description">科技创新企业认定</div>
+                </div>
+                <div class="credential-card fade-in">
+                    <div class="credential-image">信用等级</div>
+                    <div class="credential-title">AAA信用等级</div>
+                    <div class="credential-description">企业信用评级最高等级</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投诉处理 -->
+    <section class="complaint-section">
+        <div class="section-container">
+            <h2 class="section-title">投诉处理流程</h2>
+            <div class="complaint-process">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">接收投诉</div>
+                        <div class="step-description">通过电话、邮件、在线客服等渠道接收客户投诉，24小时内确认收到</div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">调查核实</div>
+                        <div class="step-description">专业团队48小时内完成调查，收集相关证据和资料</div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">制定方案</div>
+                        <div class="step-description">根据调查结果制定解决方案，并与客户沟通确认</div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">执行解决</div>
+                        <div class="step-description">按照确认的方案执行，7个工作日内完成处理</div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">跟踪回访</div>
+                        <div class="step-description">处理完成后进行回访，确保客户满意并持续改进</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="contact-section">
+        <div class="section-container">
+            <h2 class="section-title" style="color: white;">联系我们</h2>
+            <div class="contact-grid">
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-title">客服热线</div>
+                    <div class="contact-info">18948319467</div>
+                </div>
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-title">邮箱地址</div>
+                    <div class="contact-info">legal@aimarketing.com</div>
+                </div>
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-title">公司地址</div>
+                    <div class="contact-info">北京市朝阳区科技园区</div>
+                </div>
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">⚖️</div>
+                    <div class="contact-title">法务部门</div>
+                    <div class="contact-info">010-12345678</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-links">
+                <a href="index.html">返回首页</a>
+                <a href="training.html">突击营课程</a>
+                <a href="betting.html">对赌计划</a>
+                <a href="tools.html">免费工具</a>
+            </div>
+            <div class="contact-phone">法律咨询热线：18948319467</div>
+            <div>专业法务团队为您的权益保驾护航</div>
+        </div>
+    </footer>
+
+    <script>
+        // 合同标签切换
+        function showContract(type) {
+            // 隐藏所有内容
+            document.querySelectorAll('.contract-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 移除所有标签的激活状态
+            document.querySelectorAll('.contract-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的内容
+            document.getElementById(type + '-contract').classList.add('active');
+            
+            // 激活选中的标签
+            event.target.classList.add('active');
+        }
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 页面加载完成后启动
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html> 

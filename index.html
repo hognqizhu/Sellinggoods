@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>76AI卖货 - 用AI把滞销货变现金</title>
+    <meta name="description" content="AI卖货系统，0基础费，90天销量翻倍，专业解决滞销问题">
+    <meta name="keywords" content="AI卖货系统,0风险卖货,销量翻倍方案,滞销解决方案,小店怎么引流,产品卖不出去怎么办">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 全局导航 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: 0.3s;
+        }
+
+        /* 首屏区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="300" cy="800" r="120" fill="url(%23a)"/></svg>') no-repeat center;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px #feca57); }
+            to { filter: drop-shadow(0 0 20px #ff6b6b); }
+        }
+
+        /* 数据墙 */
+        .data-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .data-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .data-item:hover::before {
+            left: 100%;
+        }
+
+        .data-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .data-label {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .data-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 流程图 */
+        .process-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .step-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .arrow {
+            color: #feca57;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(0); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(5px); }
+        }
+
+        /* 主按钮 */
+        .hero-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        /* 痛点区域 */
+        .pain-points {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .pain-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .pain-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+
+        .pain-quote {
+            font-style: italic;
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        /* 产品卡片 */
+        .products-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .product-card.recommended::before {
+            content: '🔥 推荐';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list li {
+            padding: 10px 0;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .benefits-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+        }
+
+        .product-cta {
+            text-align: center;
+        }
+
+        .product-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .product-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 悬浮窗 */
+        .floating-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 999;
+            max-width: 280px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .widget-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .widget-amount {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+
+        .widget-button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .widget-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 2rem;
+            }
+            
+            .data-wall {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-flow {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+            
+            .pain-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-widget {
+                bottom: 20px;
+                right: 20px;
+                max-width: 250px;
+            }
+        }
+
+        /* 动画和交互效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 退出拦截弹窗样式 */
+        .exit-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .popup-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .popup-benefits {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .popup-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .popup-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- 全局导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">76AI卖货</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="training.html">AI卖货突击营</a></li>
+                <li><a href="betting.html">AI卖货对赌计划</a></li>
+                <li><a href="cases.html">案例战报</a></li>
+                <li><a href="tools.html">免费AI工具</a></li>
+                <li><a href="story.html">创始人故事</a></li>
+                <li><a href="legal.html">法律保障</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首屏区域 -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">用AI把滞销货变现金！</h1>
+                <div class="hero-subtitle">0基础费·90天销量翻倍</div>
+                
+                <!-- 动态数据墙 -->
+                <div class="data-wall">
+                    <div class="data-item">
+                        <div class="data-label">昨日系统成交：</div>
+                        <div class="data-value" data-target="1240566">¥0</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">正在爆单企业：</div>
+                        <div class="data-value" data-target="382">0<span style="font-size: 1rem;">家</span></div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">学员平均业绩增长：</div>
+                        <div class="data-value" data-target="217">0%</div>
+                    </div>
+                </div>
+
+                <!-- 三步流程图 -->
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-circle">📝</div>
+                        <div class="step-text">① 输入产品</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="step-circle">🎯</div>
+                        <div class="step-text">② AI锁定客户</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="process-step">
+                        <div class="step-circle">💰</div>
+                        <div class="step-text">③ 自动引流成交</div>
+                    </div>
+                </div>
+
+                <!-- 主行动按钮 -->
+                <div class="hero-cta">
+                    <a href="tools.html" class="cta-button">免费诊断我的产品 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 痛点暴击区 -->
+    <section class="pain-points">
+        <div class="section-container">
+            <h2 class="section-title">您是否也遇到了这些难题？</h2>
+            <div class="pain-grid">
+                <div class="pain-card fade-in">
+                    <div class="pain-title">❌ 投广告像赌博</div>
+                    <div class="pain-quote">"烧2万只来3个客，员工比顾客多"<br>——餐饮李老板</div>
+                </div>
+                <div class="pain-card fade-in">
+                    <div class="pain-title">❌ 不懂线上引流</div>
+                    <div class="pain-quote">"拍了100条抖音，播放不过500"<br>——服装张姐</div>
+                </div>
+                <div class="pain-card fade-in">
+                    <div class="pain-title">❌ 不会转化客户</div>
+                    <div class="pain-quote">"每天30人咨询，成交不到1单"<br>——汽修王师傅</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 双产品卡片 -->
+    <section class="products-section">
+        <div class="section-container">
+            <h2 class="section-title" style="color: white;">选择适合您的解决方案</h2>
+            <div class="products-grid">
+                <!-- 培训产品卡 -->
+                <div class="product-card fade-in">
+                    <div class="product-title">AI卖货突击营</div>
+                    <div class="product-subtitle">3天手把手搭建自动成交系统</div>
+                    <ul class="benefits-list">
+                        <li>带走客户画像报告</li>
+                        <li>生成100+营销素材</li>
+                        <li>极速上线卖货店铺</li>
+                    </ul>
+                    <div class="product-cta">
+                        <a href="training.html" class="product-button">抢占最后8席位 →</a>
+                    </div>
+                </div>
+
+                <!-- 咨询产品卡 -->
+                <div class="product-card recommended fade-in">
+                    <div class="product-title">AI卖货对赌计划</div>
+                    <div class="product-subtitle">0基础费·90天销量翻倍</div>
+                    <ul class="benefits-list">
+                        <li>🔥 不翻倍退运营费</li>
+                        <li>🔥 技术团队全程托管</li>
+                        <li>🔥 分成模式无风险</li>
+                    </ul>
+                    <div class="product-cta">
+                        <a href="betting.html" class="product-button">申请免费用系统 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 悬浮行动窗 -->
+    <div class="floating-widget">
+        <div class="widget-text">张老板今日已收款</div>
+        <div class="widget-amount">¥8,326</div>
+        <button class="widget-button" onclick="window.location.href='betting.html'">申请同款系统</button>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="training.html">AI卖货突击营</a>
+                <a href="betting.html">AI卖货对赌计划</a>
+                <a href="cases.html">案例战报</a>
+                <a href="tools.html">免费AI工具</a>
+                <a href="story.html">创始人故事</a>
+                <a href="legal.html">法律保障</a>
+            </div>
+            <div class="contact-info">
+                <div class="contact-phone">咨询热线：18948319467</div>
+                <div>专业团队7×24小时为您服务</div>
+            </div>
+            <div style="margin-top: 20px; color: #95a5a6;">
+                © 2025 76AI卖货 版权所有 | ICP备案号：京ICP备12345678号
+            </div>
+        </div>
+    </footer>
+
+    <!-- 退出拦截弹窗 -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="popup-content">
+            <div class="popup-close" onclick="closeExitPopup()">&times;</div>
+            <div class="popup-title">稍等！您可能错过：</div>
+            <div class="popup-benefits">
+                📱 3个现成AI卖货技巧（微信直发）<br>
+                🎁 免费客户画像分析名额
+            </div>
+            <input type="tel" class="popup-input" placeholder="您的手机号" id="phoneInput">
+            <button class="popup-button" onclick="claimBenefit()">领取福利</button>
+        </div>
+    </div>
+
+    <script>
+        // 数字动画
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (element.textContent.includes('¥')) {
+                    element.textContent = '¥' + Math.floor(current).toLocaleString();
+                } else if (element.textContent.includes('%')) {
+                    element.textContent = Math.floor(current) + '%';
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 退出意图检测
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                exitIntentShown = true;
+                document.getElementById('exitPopup').style.display = 'flex';
+            }
+        });
+
+        function closeExitPopup() {
+            document.getElementById('exitPopup').style.display = 'none';
+        }
+
+        function claimBenefit() {
+            const phone = document.getElementById('phoneInput').value;
+            if (phone && /^1[3-9]\d{9}$/.test(phone)) {
+                alert('福利已发送到您的微信，请注意查收！');
+                closeExitPopup();
+            } else {
+                alert('请输入正确的手机号码');
+            }
+        }
+
+        // 移动端菜单
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // 动态更新悬浮窗数据
+        function updateFloatingWidget() {
+            const amounts = [8326, 15420, 9876, 12345, 7890];
+            const names = ['张老板', '李老板', '王老板', '赵老板', '孙老板'];
+            
+            const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            
+            document.querySelector('.widget-text').textContent = `${randomName}今日已收款`;
+            document.querySelector('.widget-amount').textContent = `¥${randomAmount.toLocaleString()}`;
+        }
+
+        // 页面加载完成后启动
+        document.addEventListener('DOMContentLoaded', function() {
+            // 延迟启动计数器动画
+            setTimeout(() => {
+                document.querySelectorAll('.data-value').forEach(animateCounter);
+            }, 500);
+
+            // 定期更新悬浮窗
+            setInterval(updateFloatingWidget, 10000);
+
+            // 滚动监听
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation(); // 初始检查
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

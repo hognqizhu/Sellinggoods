@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>免费AI工具 - 产品诊断与营销工具</title>
+    <meta name="description" content="免费AI营销工具，产品诊断报告，客户画像分析，营销文案生成器">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 导航样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* 工具网格 */
+        .tools-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .tool-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .tool-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 产品诊断表单 */
+        .diagnosis-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .diagnosis-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* 工具模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .generator-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .generate-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .result-area {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">76AI卖货</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="training.html">AI卖货突击营</a></li>
+                <li><a href="betting.html">AI卖货对赌计划</a></li>
+                <li><a href="cases.html">案例战报</a></li>
+                <li><a href="tools.html" class="active">免费AI工具</a></li>
+                <li><a href="story.html">创始人故事</a></li>
+                <li><a href="legal.html">法律保障</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">免费AI工具</h1>
+            <p class="hero-subtitle">专业营销工具，助力产品销量翻倍</p>
+        </div>
+    </section>
+
+    <!-- 工具网格 -->
+    <section class="tools-section">
+        <div class="section-container">
+            <h2 class="section-title">AI营销工具箱</h2>
+            <div class="tools-grid">
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">🎯</div>
+                    <div class="tool-title">客户画像分析器</div>
+                    <div class="tool-description">输入产品信息，AI自动生成精准客户画像报告，找到最有可能购买的目标人群。</div>
+                    <button class="tool-button" onclick="openTool('customer')">立即分析</button>
+                </div>
+
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">✍️</div>
+                    <div class="tool-title">营销文案生成器</div>
+                    <div class="tool-description">一键生成高转化营销文案，包括产品描述、广告语、朋友圈文案等。</div>
+                    <button class="tool-button" onclick="openTool('copywriting')">开始生成</button>
+                </div>
+
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-title">竞争对手分析</div>
+                    <div class="tool-description">分析同行优势劣势，找到市场空白点，制定差异化竞争策略。</div>
+                    <button class="tool-button" onclick="openTool('competitor')">开始分析</button>
+                </div>
+
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">💰</div>
+                    <div class="tool-title">定价策略优化</div>
+                    <div class="tool-description">基于市场数据和用户心理，为您的产品推荐最优定价策略。</div>
+                    <button class="tool-button" onclick="openTool('pricing')">优化定价</button>
+                </div>
+
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">📱</div>
+                    <div class="tool-title">渠道推荐引擎</div>
+                    <div class="tool-description">根据产品特性和目标客户，推荐最适合的销售渠道和推广方式。</div>
+                    <button class="tool-button" onclick="openTool('channel')">获取推荐</button>
+                </div>
+
+                <div class="tool-card fade-in">
+                    <div class="tool-icon">🎨</div>
+                    <div class="tool-title">海报设计助手</div>
+                    <div class="tool-description">AI辅助设计营销海报，提供设计建议和素材推荐。</div>
+                    <button class="tool-button" onclick="openTool('design')">开始设计</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品诊断区域 -->
+    <section class="diagnosis-section">
+        <div class="section-container">
+            <h2 class="section-title">免费产品诊断</h2>
+            <div class="diagnosis-form fade-in">
+                <form id="diagnosisForm">
+                    <div class="form-group">
+                        <label class="form-label">您的产品类型：</label>
+                        <select class="form-select" name="productType" required>
+                            <option value="">请选择产品类型</option>
+                            <option value="实体商品">实体商品</option>
+                            <option value="数字产品">数字产品</option>
+                            <option value="服务类">服务类</option>
+                            <option value="课程培训">课程培训</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">产品名称：</label>
+                        <input type="text" class="form-input" name="productName" placeholder="请输入您的产品名称" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">目标客户群体：</label>
+                        <input type="text" class="form-input" name="targetCustomer" placeholder="例如：25-35岁女性白领" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">当前月销量：</label>
+                        <select class="form-select" name="monthlySales" required>
+                            <option value="">请选择销量范围</option>
+                            <option value="0-10">0-10件</option>
+                            <option value="11-50">11-50件</option>
+                            <option value="51-100">51-100件</option>
+                            <option value="101-500">101-500件</option>
+                            <option value="500+">500件以上</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">主要销售渠道：</label>
+                        <select class="form-select" name="salesChannel" required>
+                            <option value="">请选择主要渠道</option>
+                            <option value="线下门店">线下门店</option>
+                            <option value="淘宝天猫">淘宝天猫</option>
+                            <option value="抖音小店">抖音小店</option>
+                            <option value="微信朋友圈">微信朋友圈</option>
+                            <option value="其他平台">其他平台</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">遇到的主要问题：</label>
+                        <textarea class="form-textarea" name="mainProblem" placeholder="请详细描述您在销售过程中遇到的困难..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">联系方式：</label>
+                        <input type="tel" class="form-input" name="contact" placeholder="请输入您的手机号码" required>
+                    </div>
+
+                    <button type="submit" class="submit-button">获取免费诊断报告</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工具模态框 -->
+    <div id="toolModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- 工具内容将在这里动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-links">
+                <a href="index.html">返回首页</a>
+                <a href="training.html">突击营课程</a>
+                <a href="betting.html">对赌计划</a>
+                <a href="cases.html">案例战报</a>
+            </div>
+            <div class="contact-phone">咨询热线：18948319467</div>
+            <div>专业团队7×24小时为您服务</div>
+        </div>
+    </footer>
+
+    <script>
+        // 工具模态框控制
+        const modal = document.getElementById('toolModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close');
+
+        function openTool(toolType) {
+            modal.style.display = 'block';
+            loadToolContent(toolType);
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // 加载不同工具的内容
+        function loadToolContent(toolType) {
+            const toolConfigs = {
+                customer: {
+                    title: '客户画像分析器',
+                    placeholder: '请输入您的产品信息（例如：女性护肤品，主要功能是美白保湿...）',
+                    buttonText: '生成客户画像'
+                },
+                copywriting: {
+                    title: '营销文案生成器',
+                    placeholder: '请输入产品名称和主要卖点（例如：智能手表，主要功能：健康监测、运动记录...）',
+                    buttonText: '生成营销文案'
+                },
+                competitor: {
+                    title: '竞争对手分析',
+                    placeholder: '请输入您的产品类别和主要竞争对手（例如：奶茶店，主要竞争对手：喜茶、奈雪...）',
+                    buttonText: '开始分析'
+                },
+                pricing: {
+                    title: '定价策略优化',
+                    placeholder: '请输入产品信息和当前定价（例如：手工皂，成本15元，现售价35元...）',
+                    buttonText: '优化定价'
+                },
+                channel: {
+                    title: '渠道推荐引擎',
+                    placeholder: '请输入产品特性和目标客户（例如：儿童玩具，目标客户：3-8岁儿童家长...）',
+                    buttonText: '获取渠道推荐'
+                },
+                design: {
+                    title: '海报设计助手',
+                    placeholder: '请输入海报主题和要求（例如：新品上市海报，风格简约，突出品质...）',
+                    buttonText: '生成设计建议'
+                }
+            };
+
+            const config = toolConfigs[toolType];
+            modalContent.innerHTML = `
+                <h3 style="margin-bottom: 20px; color: #333;">${config.title}</h3>
+                <textarea class="generator-input" placeholder="${config.placeholder}" id="toolInput"></textarea>
+                <button class="generate-button" onclick="generateResult('${toolType}')">${config.buttonText}</button>
+                <div class="result-area" id="resultArea" style="display: none;">
+                    <h4 style="margin-bottom: 15px; color: #667eea;">AI分析结果：</h4>
+                    <div id="resultContent"></div>
+                </div>
+            `;
+        }
+
+        // 生成AI结果（模拟）
+        function generateResult(toolType) {
+            const input = document.getElementById('toolInput').value;
+            const resultArea = document.getElementById('resultArea');
+            const resultContent = document.getElementById('resultContent');
+
+            if (!input.trim()) {
+                alert('请先输入相关信息');
+                return;
+            }
+
+            // 显示加载状态
+            resultContent.innerHTML = '<div class="loading"></div> AI正在分析中，请稍候...';
+            resultArea.style.display = 'block';
+
+            // 模拟AI处理时间
+            setTimeout(() => {
+                const results = generateMockResult(toolType, input);
+                resultContent.innerHTML = results;
+            }, 2000);
+        }
+
+        // 生成模拟结果
+        function generateMockResult(toolType, input) {
+            const mockResults = {
+                customer: `
+                    <h5>🎯 核心客户画像：</h5>
+                    <p><strong>年龄段：</strong>25-35岁</p>
+                    <p><strong>性别：</strong>女性为主（占比78%）</p>
+                    <p><strong>收入水平：</strong>月收入8000-15000元</p>
+                    <p><strong>消费特征：</strong>注重品质，愿意为好产品付费</p>
+                    <p><strong>购买动机：</strong>提升个人形象，追求生活品质</p>
+                    <p><strong>活跃平台：</strong>小红书、抖音、微信朋友圈</p>
+                `,
+                copywriting: `
+                    <h5>✍️ 营销文案建议：</h5>
+                    <p><strong>产品标题：</strong>【限时特惠】${input.substring(0, 20)}...</p>
+                    <p><strong>核心卖点：</strong>3大独特优势，解决用户痛点</p>
+                    <p><strong>朋友圈文案：</strong>终于找到了心仪已久的好产品！质量超赞，价格也很实惠...</p>
+                    <p><strong>广告语：</strong>好产品，用过都说好！</p>
+                `,
+                competitor: `
+                    <h5>📊 竞争分析报告：</h5>
+                    <p><strong>市场地位：</strong>您的产品在细分市场中具有一定优势</p>
+                    <p><strong>价格对比：</strong>定价合理，具有竞争力</p>
+                    <p><strong>差异化建议：</strong>突出服务优势和产品特色</p>
+                    <p><strong>机会点：</strong>可以在线上渠道加大投入</p>
+                `,
+                pricing: `
+                    <h5>💰 定价策略建议：</h5>
+                    <p><strong>建议售价：</strong>根据成本和市场分析，建议定价区间</p>
+                    <p><strong>促销策略：</strong>可以采用阶梯定价和限时优惠</p>
+                    <p><strong>心理定价：</strong>使用魅力定价法，如99元而非100元</p>
+                `,
+                channel: `
+                    <h5>📱 渠道推荐：</h5>
+                    <p><strong>主推渠道：</strong>抖音小店 + 微信私域</p>
+                    <p><strong>辅助渠道：</strong>小红书种草 + 淘宝店铺</p>
+                    <p><strong>推广建议：</strong>短视频营销 + KOL合作</p>
+                `,
+                design: `
+                    <h5>🎨 设计建议：</h5>
+                    <p><strong>主色调：</strong>建议使用温暖色系，提升购买欲</p>
+                    <p><strong>版面布局：</strong>采用黄金分割比例，突出主要信息</p>
+                    <p><strong>文字建议：</strong>标题醒目，正文简洁有力</p>
+                    <p><strong>视觉元素：</strong>添加信任背书和紧迫感元素</p>
+                `
+            };
+
+            return mockResults[toolType] || '<p>AI分析完成，请联系客服获取详细报告。</p>';
+        }
+
+        // 诊断表单提交
+        document.getElementById('diagnosisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            // 模拟表单提交
+            alert('诊断申请已提交！我们将在24小时内为您生成专属诊断报告并发送到您的手机。');
+            this.reset();
+        });
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // 页面加载完成后启动
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html> 

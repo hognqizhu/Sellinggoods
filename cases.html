@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例战报 - AI卖货真实成功案例</title>
+    <meta name="description" content="查看76AI卖货真实成功案例，学员销量翻倍战报，不同行业成功故事分享">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* 导航样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #667eea;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 0 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #feca57;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* 筛选器 */
+        .filter-section {
+            background: white;
+            padding: 40px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .filter-tab:hover {
+            background: #e9ecef;
+        }
+
+        .filter-tab.active:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        /* 案例卡片 */
+        .cases-section {
+            padding: 60px 0;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .case-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .case-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+
+        .industry-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .case-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .case-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .case-body {
+            padding: 30px;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .before, .after {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .before {
+            background: rgba(231, 76, 60, 0.1);
+            border: 2px solid rgba(231, 76, 60, 0.2);
+        }
+
+        .after {
+            background: rgba(39, 174, 96, 0.1);
+            border: 2px solid rgba(39, 174, 96, 0.2);
+        }
+
+        .ba-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .ba-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .before .ba-value {
+            color: #e74c3c;
+        }
+
+        .after .ba-value {
+            color: #27ae60;
+        }
+
+        .improvement {
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .case-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* 数据可视化 */
+        .visualization-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .chart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .progress-bars {
+            margin-bottom: 40px;
+        }
+
+        .progress-item {
+            margin-bottom: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 6px;
+            transition: width 2s ease;
+            width: 0%;
+        }
+
+        .progress-fill.animate {
+            width: var(--progress-width);
+        }
+
+        /* 成功要素 */
+        .success-factors {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .factor-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .factor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .factor-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .factor-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .factor-description {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* CTA区域 */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cta-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: white;
+            color: #ff6b6b;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">76AI卖货</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="training.html">AI卖货突击营</a></li>
+                <li><a href="betting.html">AI卖货对赌计划</a></li>
+                <li><a href="cases.html" class="active">案例战报</a></li>
+                <li><a href="tools.html">免费AI工具</a></li>
+                <li><a href="story.html">创始人故事</a></li>
+                <li><a href="legal.html">法律保障</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">真实案例战报</h1>
+            <p class="hero-subtitle">3672位学员成功实现销量翻倍的真实案例</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">3,672</span>
+                    <span class="stat-label">成功学员</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">92%</span>
+                    <span class="stat-label">成功率</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">245%</span>
+                    <span class="stat-label">平均增长</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">16</span>
+                    <span class="stat-label">覆盖行业</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 筛选器 -->
+    <section class="filter-section">
+        <div class="section-container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">全部案例</button>
+                <button class="filter-tab" data-filter="ecommerce">电商零售</button>
+                <button class="filter-tab" data-filter="education">教育培训</button>
+                <button class="filter-tab" data-filter="healthcare">医疗健康</button>
+                <button class="filter-tab" data-filter="finance">金融保险</button>
+                <button class="filter-tab" data-filter="beauty">美容护肤</button>
+                <button class="filter-tab" data-filter="food">餐饮食品</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例列表 -->
+    <section class="cases-section">
+        <div class="section-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <div>正在加载案例数据...</div>
+            </div>
+            <div class="cases-grid" id="casesGrid">
+                <!-- 案例卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据可视化 -->
+    <section class="visualization-section">
+        <div class="section-container">
+            <h2 class="section-title">整体效果数据</h2>
+            <div class="chart-container fade-in">
+                <h3 class="chart-title">不同维度提升效果统计</h3>
+                <div class="progress-bars">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>销售额提升</span>
+                            <span>245%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>客户获取量</span>
+                            <span>420%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>转化率提升</span>
+                            <span>180%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>复购率提升</span>
+                            <span>156%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功要素 -->
+    <section class="success-factors">
+        <div class="section-container">
+            <h2 class="section-title">成功的关键要素</h2>
+            <div class="factors-grid fade-in">
+                <div class="factor-card">
+                    <span class="factor-icon">🤖</span>
+                    <h3 class="factor-title">AI精准引流</h3>
+                    <p class="factor-description">智能识别目标客户，精准投放，获客成本降低60%</p>
+                </div>
+                <div class="factor-card">
+                    <span class="factor-icon">📊</span>
+                    <h3 class="factor-title">数据驱动优化</h3>
+                    <p class="factor-description">实时监控关键指标，持续优化转化漏斗</p>
+                </div>
+                <div class="factor-card">
+                    <span class="factor-icon">🎯</span>
+                    <h3 class="factor-title">个性化营销</h3>
+                    <p class="factor-description">千人千面的营销内容，提升客户体验</p>
+                </div>
+                <div class="factor-card">
+                    <span class="factor-icon">🔄</span>
+                    <h3 class="factor-title">自动化流程</h3>
+                    <p class="factor-description">全流程自动化运营，减少人工成本80%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区域 -->
+    <section class="cta-section">
+        <div class="section-container">
+            <h2 class="cta-title">你也可以成为下一个成功案例</h2>
+            <p class="cta-subtitle">加入76AI卖货，90天实现销量翻倍</p>
+            <a href="index.html#apply" class="cta-button">立即申请免费诊断 →</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-links">
+                <a href="index.html">返回首页</a>
+                <a href="training.html">突击营课程</a>
+                <a href="betting.html">对赌计划</a>
+                <a href="legal.html">法律保障</a>
+            </div>
+            <div class="contact-phone">咨询热线：18948319467</div>
+            <div>专业团队7×24小时为您服务</div>
+        </div>
+    </footer>
+
+    <script>
+        // 案例数据
+        const casesData = [
+            {
+                id: 1,
+                industry: 'ecommerce',
+                industryName: '电商零售',
+                title: '张总 - 母婴用品店',
+                subtitle: '从月销2万到月销12万的蜕变',
+                before: '月销售额：¥20,000',
+                after: '月销售额：¥120,000',
+                improvement: '销售额提升500%',
+                period: '90天',
+                customers: '从50人增至300人',
+                conversion: '从2%提升至8%',
+                cost: '获客成本降低40%'
+            },
+            {
+                id: 2,
+                industry: 'education',
+                industryName: '教育培训',
+                title: '李老师 - 在线英语培训',
+                subtitle: '学员数量3个月翻10倍',
+                before: '月招生：15人',
+                after: '月招生：150人',
+                improvement: '招生量提升900%',
+                period: '90天',
+                customers: '从200人增至2000人',
+                conversion: '从1.5%提升至7.5%',
+                cost: '获客成本降低55%'
+            },
+            {
+                id: 3,
+                industry: 'beauty',
+                industryName: '美容护肤',
+                title: '王总 - 护肤品牌',
+                subtitle: 'AI精准营销助力品牌爆发',
+                before: '月销售额：¥80,000',
+                after: '月销售额：¥280,000',
+                improvement: '销售额提升250%',
+                period: '75天',
+                customers: '从150人增至800人',
+                conversion: '从3%提升至12%',
+                cost: '获客成本降低35%'
+            },
+            {
+                id: 4,
+                industry: 'healthcare',
+                industryName: '医疗健康',
+                title: '陈医生 - 健康咨询',
+                subtitle: '专业服务+AI营销的完美结合',
+                before: '月咨询量：30人',
+                after: '月咨询量：180人',
+                improvement: '咨询量提升500%',
+                period: '120天',
+                customers: '从100人增至1200人',
+                conversion: '从5%提升至15%',
+                cost: '获客成本降低50%'
+            },
+            {
+                id: 5,
+                industry: 'finance',
+                industryName: '金融保险',
+                title: '刘总 - 保险代理',
+                subtitle: 'AI助力精准客户匹配',
+                before: '月签单：8份',
+                after: '月签单：45份',
+                improvement: '签单量提升460%',
+                period: '90天',
+                customers: '从80人增至600人',
+                conversion: '从10%提升至7.5%',
+                cost: '获客成本降低30%'
+            },
+            {
+                id: 6,
+                industry: 'food',
+                industryName: '餐饮食品',
+                title: '赵总 - 特色小食',
+                subtitle: '线上线下一体化营销突破',
+                before: '月销售额：¥35,000',
+                after: '月销售额：¥140,000',
+                improvement: '销售额提升300%',
+                period: '60天',
+                customers: '从200人增至1000人',
+                conversion: '从2.5%提升至14%',
+                cost: '获客成本降低45%'
+            }
+        ];
+
+        // 筛选功能
+        function initializeFilters() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const casesGrid = document.getElementById('casesGrid');
+
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 移除所有活动状态
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // 添加当前活动状态
+                    tab.classList.add('active');
+                    
+                    const filter = tab.dataset.filter;
+                    filterCases(filter);
+                });
+            });
+        }
+
+        // 筛选案例
+        function filterCases(filter) {
+            const casesGrid = document.getElementById('casesGrid');
+            const loading = document.querySelector('.loading');
+            
+            // 显示加载动画
+            loading.classList.add('show');
+            casesGrid.style.display = 'none';
+            
+            setTimeout(() => {
+                const filteredCases = filter === 'all' ? casesData : casesData.filter(c => c.industry === filter);
+                renderCases(filteredCases);
+                
+                // 隐藏加载动画
+                loading.classList.remove('show');
+                casesGrid.style.display = 'grid';
+                
+                // 触发动画
+                setTimeout(() => {
+                    document.querySelectorAll('.case-card').forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100);
+                    });
+                }, 50);
+            }, 500);
+        }
+
+        // 渲染案例卡片
+        function renderCases(cases) {
+            const casesGrid = document.getElementById('casesGrid');
+            
+            casesGrid.innerHTML = cases.map(caseItem => `
+                <div class="case-card" data-industry="${caseItem.industry}">
+                    <div class="case-header">
+                        <div class="industry-tag">${caseItem.industryName}</div>
+                        <h3 class="case-title">${caseItem.title}</h3>
+                        <p class="case-subtitle">${caseItem.subtitle}</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="before-after">
+                            <div class="before">
+                                <div class="ba-label">改造前</div>
+                                <div class="ba-value">${caseItem.before.split('：')[1]}</div>
+                            </div>
+                            <div class="after">
+                                <div class="ba-label">改造后</div>
+                                <div class="ba-value">${caseItem.after.split('：')[1]}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="improvement">${caseItem.improvement}</div>
+                        
+                        <div class="case-details">
+                            <div class="detail-item">
+                                <span class="detail-label">改造周期</span>
+                                <span class="detail-value">${caseItem.period}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">客户增长</span>
+                                <span class="detail-value">${caseItem.customers}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">转化率</span>
+                                <span class="detail-value">${caseItem.conversion}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">成本优化</span>
+                                <span class="detail-value">${caseItem.cost}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 滚动动画
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                    
+                    // 特殊处理进度条动画
+                    if (element.querySelector('.progress-fill')) {
+                        element.querySelectorAll('.progress-fill').forEach(bar => {
+                            bar.classList.add('animate');
+                        });
+                    }
+                }
+            });
+        }
+
+        // 数字动画
+        function animateNumbers() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const finalValue = target.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                        
+                        let currentValue = 0;
+                        const increment = numericValue / 50;
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                currentValue = numericValue;
+                                clearInterval(timer);
+                            }
+                            target.textContent = Math.floor(currentValue) + (isPercentage ? '%' : '');
+                        }, 30);
+                        
+                        observer.unobserve(target);
+                    }
+                });
+            });
+            
+            statNumbers.forEach(number => observer.observe(number));
+        }
+
+        // 页面加载完成后启动
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFilters();
+            filterCases('all'); // 默认显示所有案例
+            
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+            animateNumbers();
+        });
+    </script>
+</body>
+</html> 
